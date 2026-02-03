@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIMATS Transports ID</title>
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+
+        .id-card {
+            width: 300px;
+            margin: 20px auto;
+            background: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        .top-image,
+        .bottom-image,
+        .photo {
+            width: 300px;
+            height: auto;
+        }
+
+        .date-time,
+        .valid,
+        .location {
+            background: #28a745;
+            color: white;
+            padding: 5px;
+            font-weight: bold;
+        }
+
+        .valid {
+            font-size: 18px;
+        }
+
+        .info {
+            font-weight: bold;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="id-card">
+        <img src="https://raw.githubusercontent.com/Sona S/Image/main/transport-1.jpg" alt="Top Image" class="top-image">
+
+        <div class="date-time" id="dateTime"></div>
+        <div class="valid">VALID</div>
+
+        <img src="https://raw.githubusercontent.com/SONA0095/sona/main/Photo1.jpeg"
+     alt="ID Photo"
+     class="photo">
+
+
+           <div class="info">
+           <p>Sona S</p>
+           <p>192220095</p>
+        </div>
+
+        <div class="location">ANNA NAGAR II </div>
+
+        <img src="https://raw.githubusercontent.com/Kasthuribharathi/Image/main/transport-2.jpg" alt="Bottom Image" class="bottom-image">
+    </div>
+
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            const options = {
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            };
+
+            let dateTimeString = now.toLocaleString('en-GB', options);
+            dateTimeString = dateTimeString.replace(',', '').replace(/ /g, '-');
+            dateTimeString = dateTimeString.replace(
+                /(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)/,
+                m => m.toUpperCase()
+            );
+            dateTimeString = dateTimeString.replace(/-(\d{2}:\d{2}:\d{2})/, ' $1');
+
+            document.getElementById('dateTime').textContent = dateTimeString;
+        }
+
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
+    </script>
+</body>
+</html>
