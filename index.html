@@ -75,34 +75,30 @@
     </div>
 
     <script>
-        function updateDateTime() {
-            const now = new Date();
-            const options = {
-                day: '2-digit',
-                month: 'short',
-                year: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit',
-                hour12: false
-            };
+function updateDateTime() {
+    const now = new Date();
 
-            let dateTimeString = now.toLocaleString('en-GB', options);
-            dateTimeString = dateTimeString.replace(',', '').replace(/ /g, '-');
-            dateTimeString = dateTimeString.replace(
-                /(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)/,
-                m => m.toUpperCase()
-            );
-            dateTimeString = dateTimeString.replace(/-(\d{2}:\d{2}:\d{2})/, ' $1');
+    const day = String(now.getDate()).padStart(2, '0');
+    const monthNames = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+    const month = monthNames[now.getMonth()];
+    const year = now.getFullYear();
 
-            document.getElementById('dateTime').textContent = dateTimeString;
-        }
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
 
-        setInterval(updateDateTime, 1000);
-        updateDateTime();
-    </script>
+    const dateTimeString = `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
+
+    document.getElementById("dateTime").textContent = dateTimeString;
+}
+
+setInterval(updateDateTime, 1000);
+updateDateTime();
+</script>
+
 </body>
 
 </html>
+
 
 
